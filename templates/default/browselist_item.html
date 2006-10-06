@@ -1,7 +1,7 @@
 
 				{if $browselist_item.directory}
 
-				<li><a href="index.php?browse={$browselist_item.directory}"><img src="images/dir.gif" class="icon" /> {$browselist_item.directory_name}</a></li>
+				<li><a href="index.php?browse={$browselist_item.directory|escape:'url'}"><img src="images/dir.gif" class="icon" /> {$browselist_item.directory_name}</a></li>
 
 				{else}
 
