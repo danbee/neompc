@@ -27,6 +27,8 @@
 			
 			$browse_list = explode('/', $browse);
 			
+			//print_r($browse);
+			
 			if ($browse) {
 			
 				foreach ($browse_list as $browse_item) {
@@ -41,6 +43,16 @@
 			if (!$browselist) {
 				$browselist = $mympd->GetDir($browse);
 			}
+			
+			if ($_CONFIG['sort_by_tracknumber']) {
+				usort($browselist, "track_sort");
+			}
+			
+			/*
+			echo '<pre>';
+			print_r($browselist);
+			echo '</pre>';
+			//*/
 			
 			foreach ($browselist as $key => $browselist_item) {
 			

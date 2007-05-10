@@ -11,6 +11,6 @@
 	require("lib/page.php");	
 		
 	/* output the template */	
-	$smarty->display('default/index.html');
+	$smarty->display($_CONFIG['template'] . '/index.html');
 	
 ?> 

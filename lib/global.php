@@ -1,5 +1,7 @@
 <?php
 	/* Smarty stuff */
+	
+	require('config/config.inc.php');
 
 	define('SMARTY_DIR', 'lib/smarty/libs/');
 	require(SMARTY_DIR . 'Smarty.class.php');
@@ -15,6 +17,12 @@
 	if (!$mympd->connected) {
 		echo "<p>Problem connecting to MPD!</p>";
 		exit;
+	}
+	
+	/* track number sorting function */
+	
+	function track_sort($a, $b) {
+		return $a['Track'] - $b['Track'];
 	}
 	
 	/* setup some global vars */
@@ -43,10 +51,12 @@
 	/* do the same with the current browse position */
 	if ($_GET['browse']) {
 		$browse = $_GET['browse'];
-		setcookie('browse', $browse);
+		setcookie('browse', stripslashes($browse));
 	}
 	else {
 		$browse = $_COOKIE['browse'];
 	}
+	
+	$browse = stripslashes($browse);
 
 ?>
