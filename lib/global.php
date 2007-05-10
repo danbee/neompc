@@ -22,7 +22,26 @@
 	/* track number sorting function */
 	
 	function track_sort($a, $b) {
-		return $a['Track'] - $b['Track'];
+		if ($a['directory'] && $b['directory']) {
+			if ($a['directory'] < $b['directory']) {
+				return -1;
+			}
+			elseif ($a['directory'] > $b['directory']) {
+				return 1;
+			}
+			else {
+				return 0;
+			}
+		}
+		elseif ($a['directory'] && !$b['directory']) {
+			return 1;
+		}
+		elseif (!$a['directory'] && $b['directory']) {
+			return -1;
+		}
+		else {
+			return $a['Track'] - $b['Track'];
+		}
 	}
 	
 	/* setup some global vars */
