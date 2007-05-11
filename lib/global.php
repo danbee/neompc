@@ -67,15 +67,4 @@
 		$page = 'playlist';
 	}
 	
-	/* do the same with the current browse position */
-	if ($_GET['browse']) {
-		$browse = $_GET['browse'];
-		setcookie('browse', stripslashes($browse));
-	}
-	else {
-		$browse = $_COOKIE['browse'];
-	}
-	
-	$browse = stripslashes($browse);
-
 ?>

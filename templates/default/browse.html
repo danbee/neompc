@@ -1,6 +1,6 @@
 
 			<ul id="crumb_trail">
-				<li>&bull; <a href="index.php?browse=/"><img src="images/home.gif" alt="Home" /></a></li>
+				<li><a href="index.php?browse=/"><img src="images/home.gif" alt="Home" /></a></li>
 
 				{foreach from=$dir_list item=dir_list_item}
 					<li>&bull; <a href="index.php?browse={$dir_list_item.path|escape:'url'}">{$dir_list_item.name|escape:'html'}</a></li>

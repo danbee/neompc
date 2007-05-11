@@ -2,8 +2,16 @@
 				{if $browselist_item.directory}
 
 				<li><a href="index.php?browse={$browselist_item.directory|escape:'url'}"><img src="images/dir.gif" class="icon" /> {$browselist_item.directory_name|escape:'html'}</a></li>
+				
+				{elseif $browselist_item.metaArtist}
 
-				{else}
+				<li><a href="index.php?browse=albums::{$browselist_item.metaArtist|escape:'url'}"><img src="images/artist.gif" class="icon" /> {$browselist_item.metaArtist|escape:'html'}</a></li>
+				
+				{elseif $browselist_item.metaAlbum}
+
+				<li><a href="index.php?browse=tracks::{$browselist_item.metaAlbum|escape:'url'}"><img src="images/album.gif" class="icon" /> {$browselist_item.metaAlbum|escape:'html'}</a></li>
+				
+				{elseif $browselist_item.Title}
 
 				{if $browselist_item.in_playlist}<li style="background: #555;">{else}<li>{/if}<a href="{$browselist_add_link}{$browselist_item.file|escape:'url'}"><img src="images/add.gif" alt="Add" class="button" /></a><a href="{$browselist_play_link}{$browselist_item.file|escape:'url'}"><img src="images/play.gif" alt="Play" class="button" /></a><img src="images/note.gif" class="icon" /> {if $browselist_item.Title|escape:'html'}<span class="title">{$browselist_item.Title|escape:'html'}</span><br /><span class="artist">{$browselist_item.Artist|escape:'html'}</span> <span class="album">({$browselist_item.Album|escape:'html'})</span>{else}{$browselist_item.file|escape:'html'}{/if}</li>
 
