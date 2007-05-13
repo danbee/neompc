@@ -1,6 +1,8 @@
 <?php
 	/* Smarty stuff */
-	
+
+	$version = 0.3;
+
 	require('config/config.inc.php');
 
 	define('SMARTY_DIR', 'lib/smarty/libs/');
@@ -10,17 +12,19 @@
 	$smarty->compile_dir = 'smarty/templates_c/';
 	$smarty->config_dir = 'smarty/configs/';
 	$smarty->cache_dir = 'smarty/cache/';
-	
+
+	$smarty->assign('version', $version);
+
 	include('lib/mpd.class.php');
 	$mympd = new mpd('localhost',6600);
-	
+
 	if (!$mympd->connected) {
 		echo "<p>Problem connecting to MPD!</p>";
 		exit;
 	}
-	
+
 	/* track number sorting function */
-	
+
 	function track_sort($a, $b) {
 		if ($a['directory'] && $b['directory']) {
 			if ($a['directory'] < $b['directory']) {
@@ -43,18 +47,18 @@
 			return $a['Track'] - $b['Track'];
 		}
 	}
-	
+
 	/* setup some global vars */
 	$smarty->assign('browse_link', 'index.php?page=browse');
 	$smarty->assign('playlist_link', 'index.php?page=playlist');
 	$smarty->assign('browselist_play_link', 'index.php?action=fileplay&file=');
 	$smarty->assign('browselist_add_link', 'index.php?action=fileadd&file=');
 	$smarty->assign('playlist_remove_link', 'index.php?action=remove&id=');
-	$smarty->assign('control_link', 'index.php?page=control');	
-	$smarty->assign('playlist_play_link', 'index.php?page=control&action=play&skipto=');	
+	$smarty->assign('control_link', 'index.php?page=control');
+	$smarty->assign('playlist_play_link', 'index.php?page=control&action=play&skipto=');
 	$smarty->assign('playlist_clear_link', 'index.php?action=clear');
 
-	/* first check for a page cookie, and default to displaying the playlist */	
+	/* first check for a page cookie, and default to displaying the playlist */
 	if ($_GET['page']) {
 		$page = $_GET['page'];
 		setcookie('page', $page);
@@ -62,9 +66,11 @@
 	else {
 		$page = $_COOKIE['page'];
 	}
-	
+
 	if (!$page) {
 		$page = 'playlist';
 	}
-	
+
+	$smarty->assign('page', $page);
+
 ?>

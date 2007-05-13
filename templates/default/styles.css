@@ -42,6 +42,24 @@ body {
 	background: #ccc;
 	color: #000;
 }
+#menu a.selected {
+	background: #ddd;
+	color: #333;
+	padding: 1px 0px 3px;
+	float: left;
+	margin-left: 2px;
+	display: block;
+	width: 32%;
+	text-align: center;
+	font-weight: bold;
+}
+#menu a.selected:hover {
+	background: #fff;
+}
+#menu a.selecteds:active {
+	background: #666;
+	color: #fff;
+}
 #page {
 	padding: 15px;
 	clear: left;
@@ -114,6 +132,8 @@ img.button {
 	margin-left: 3px;
 	border: 0px none !important;
 }
-
+li.playing {
+	background: #444;
+}
 
 {/literal}

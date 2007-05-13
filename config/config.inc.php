@@ -14,7 +14,7 @@
 	$_CONFIG['template'] = 'default';
 
 	/* Browse mode can be 'filesystem' or 'metadata' */
-	$_CONFIG['browse_mode'] = 'metadata';
+	$_CONFIG['browse_mode'] = 'filesystem';
 
 	$_CONFIG['sort_by_tracknumber'] = true;
 
