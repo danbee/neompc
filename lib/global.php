@@ -1,7 +1,7 @@
 <?php
 	/* Smarty stuff */
 
-	$version = 0.3;
+	$version = 0.4;
 
 	require('config/config.inc.php');
 
