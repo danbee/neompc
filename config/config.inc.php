@@ -18,4 +18,8 @@
 
 	$_CONFIG['sort_by_tracknumber'] = true;
 
+	$_CONFIG['browse_extra_track_info'] = false;
+
+	$_CONFIG['playlist_extra_track_info'] = true;
+
 ?>

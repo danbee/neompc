@@ -12,19 +12,23 @@
 			echo '</pre>';
 			//*/
 
+			$smarty->assign('show_extra_track_info', $_CONFIG['playlist_extra_track_info']);
+
 			$smarty->assign('playlist', $mympd->playlist);
 			$smarty->assign('playing', $mympd->current_track_id);
 			break;
 		case "control":
 			/* get the currently playing track */
 			$current_track = $mympd->playlist[$mympd->current_track_id];
-			$smarty->assign('current_track_no', $current_track['Track']);
+			$smarty->assign('current_track_no', $mympd->current_track_id);
 			$smarty->assign('current_title', $current_track['Title']);
 			$smarty->assign('current_album', $current_track['Album']);
 			$smarty->assign('current_artist', $current_track['Artist']);
 			$smarty->assign('current_file', $current_track['file']);
 			break;
 		case "browse":
+
+			$smarty->assign('show_extra_track_info', $_CONFIG['show_extra_track_info']);
 
 			switch ($_CONFIG['browse_mode']) {
 
