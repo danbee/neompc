@@ -61,7 +61,7 @@ body {
 	color: #fff;
 }
 #page {
-	padding: 15px;
+	padding: 7px;
 	clear: left;
 }
 #page ul {
@@ -108,7 +108,7 @@ img.button {
 #song_display {
 	width: 215px;
 	margin: 0px auto;
-	height: 50px;
+	height: 55px;
 	text-align: center;
 	font-size: 12px;
 }
@@ -134,6 +134,10 @@ img.button {
 }
 li.playing {
 	background: #444;
+}
+img#cover {
+	border: 1px solid #666;
+	padding: 2px;
 }
 
 {/literal}

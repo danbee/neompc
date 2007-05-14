@@ -5,16 +5,16 @@
 	**************************************/
 
 	/* Config relating to the display of CD covers */
-	/******** THIS IS NOT YET IMPLEMENTED! *********/
-	$_CONFIG['music_directory'] = '/var/lib/mpd/music';
+	/* music_directory must match you MPD music_directory config */
+	$_CONFIG['music_directory'] = '/home/danbee/Music';
 	$_CONFIG['album_cover_name'] = 'folder.jpg';
-	/***********************************************/
+	$_CONFIG['album_cover_size'] = 130;
 
 	/* Template to use for displaying the pages */
 	$_CONFIG['template'] = 'default';
 
 	/* Browse mode can be 'filesystem' or 'metadata' */
-	$_CONFIG['browse_mode'] = 'filesystem';
+	$_CONFIG['browse_mode'] = 'metadata';
 
 	$_CONFIG['sort_by_tracknumber'] = true;
 

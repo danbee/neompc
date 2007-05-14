@@ -25,6 +25,16 @@
 			$smarty->assign('current_album', $current_track['Album']);
 			$smarty->assign('current_artist', $current_track['Artist']);
 			$smarty->assign('current_file', $current_track['file']);
+			
+			$cover_link = $_CONFIG['music_directory'] . '/'
+						. substr($current_track['file'], 0, strrpos($current_track['file'], '/') + 1) 
+						. $_CONFIG['album_cover_name'];
+			
+			if (file_exists($cover_link)) {
+				$smarty->assign('coverimage', $cover_link);
+				$smarty->assign('coversize', $_CONFIG['album_cover_size']);
+			}
+			
 			break;
 		case "browse":
 
@@ -36,7 +46,7 @@
 
 					/* split the browse get var if present */
 					if ($_GET['browse']) {
-						setcookie('browse', stripslashes($_GET['browse']));
+						setcookie('browse', $_GET['browse']);
 						if ($_GET['browse'] == '/') {
 							$meta_level = 'artists';
 						}
@@ -81,7 +91,7 @@
 							$artists = $mympd->GetArtists();
 
 							foreach ($artists as $the_artist) {
-								$browselist[] = array('metaArtist' => $the_artist, 'path' => stripslashes($the_artist));
+								$browselist[] = array('metaArtist' => $the_artist, 'path' => $the_artist);
 							}
 
 							break;
@@ -90,10 +100,10 @@
 							$albums = $mympd->GetAlbums($artist);
 
 							foreach ($albums as $the_album) {
-								$browselist[] = array('metaAlbum' => $the_album, 'path' => stripslashes($artist . '/' . $the_album));
+								$browselist[] = array('metaAlbum' => $the_album, 'path' => $artist . '/' . $the_album);
 							}
 
-							$dir_list = array(array('name' => stripslashes($artist), 'path' => urlencode(stripslashes($artist))));
+							$dir_list = array(array('name' => stripslashes($artist), 'path' => urlencode($artist)));
 
 							break;
 
@@ -117,7 +127,7 @@
 								usort($browselist, "track_sort");
 							}
 
-							$dir_list = array(array('name' => stripslashes($artist), 'path' => urlencode(stripslashes($artist))), array('name' => stripslashes($album), 'path' => urlencode(stripslashes($artist . '/' . $album))));
+							$dir_list = array(array('name' => $artist, 'path' => urlencode($artist)), array('name' => $album, 'path' => urlencode($artist . '/' . $album)));
 
 							break;
 					}
@@ -132,13 +142,13 @@
 					/* get the browse position from the cookie or from get */
 					if ($_GET['browse']) {
 						$browse = $_GET['browse'];
-						setcookie('browse', stripslashes($browse));
+						setcookie('browse', $browse);
 					}
 					else {
 						$browse = $_COOKIE['browse'];
 					}
 
-					$browse = stripslashes($browse);
+					$browse = $browse;
 
 					/* make the path array */
 

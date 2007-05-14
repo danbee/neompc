@@ -1,7 +1,15 @@
 <?php
 	/* Smarty stuff */
 
-	$version = 0.4;
+	$version = 0.5;
+	
+	if (get_magic_quotes_gpc()) {
+		/* Deal with Magic quotes. We can safely strip these off as we're not using a database. */
+		$_REQUEST = array_map('stripslashes', $_REQUEST);
+		$_GET = array_map('stripslashes', $_GET);
+		$_POST = array_map('stripslashes', $_POST);
+		$_COOKIE = array_map('stripslashes', $_COOKIE);
+	}
 
 	require('config/config.inc.php');
 
