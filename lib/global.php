@@ -78,6 +78,8 @@
 	if (!$page) {
 		$page = 'playlist';
 	}
+	
+	//echo $mympd->current_track_length, ' - ', $mympd->current_track_position;
 
 	$smarty->assign('page', $page);
 

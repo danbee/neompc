@@ -35,6 +35,16 @@
 				$smarty->assign('coversize', $_CONFIG['album_cover_size']);
 			}
 			
+			$time_left = (($mympd->current_track_length - $mympd->current_track_position) + 2) * 1000;
+			
+			//echo $time_left / 1000;
+			
+			if ($mympd->state == MPD_STATE_PLAYING) {
+				$smarty->assign('refresh',
+				"<script>setTimeout('window.location.replace(unescape(window.location.pathname));', "
+				. $time_left . ");</script>");
+			}
+			
 			break;
 		case "browse":
 

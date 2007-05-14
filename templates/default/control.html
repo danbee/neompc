@@ -1,4 +1,4 @@
-		<div id="song_display">{if $current_title}<span class="pos">{$current_track_no+1|string_format:"%02d"}.</span> <span class="title">{$current_title}</span><br /><span class="artist">{$current_artist}</span> {if $current_album}<span class="album">({$current_album})</span>{/if}{elseif $current_file}{$current_file}{else}<br />[Nothing playing]{/if}</div>
+		<div id="song_display">{if $current_title}<span class="pos">{$current_track_no+1|string_format:"%02d"}.</span> <span class="title">{$current_title}</span><br /><span class="artist">{$current_artist}</span> {if $current_album}<!--<span class="album">({$current_album})</span>-->{/if}{elseif $current_file}{$current_file}{else}<br />[Nothing playing]{/if}</div>
 		
 		{if $coverimage}<div id="cover_image"><img id="cover" src="lib/image.php?file={$coverimage}&size={$coversize}"></div>{/if}
 

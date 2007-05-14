@@ -107,8 +107,8 @@ img.button {
 }
 #song_display {
 	width: 215px;
-	margin: 0px auto;
-	height: 55px;
+	margin: 0px auto 5px;
+	/* height: 55px; */
 	text-align: center;
 	font-size: 12px;
 }
