@@ -135,6 +135,23 @@ img.button {
 li.playing {
 	background: #444;
 }
+#progress {
+	border: 1px solid #666;
+	padding: 2px;
+	width: 200px;
+	height: 6px;
+	margin-top: 3px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: left;
+}
+#progressbar {
+	font-size: 1px;
+	background: #ddd;
+	height: 6px;
+	margin: 0px;
+	padding: 0px;
+}
 img#cover {
 	border: 1px solid #666;
 	padding: 2px;

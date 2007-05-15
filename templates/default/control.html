@@ -1,5 +1,8 @@
 		<div id="song_display">{if $current_title}<span class="pos">{$current_track_no+1|string_format:"%02d"}.</span> <span class="title">{$current_title}</span><br /><span class="artist">{$current_artist}</span> {if $current_album}<!--<span class="album">({$current_album})</span>-->{/if}{elseif $current_file}{$current_file}{else}<br />[Nothing playing]{/if}</div>
 		
-		{if $coverimage}<div id="cover_image"><img id="cover" src="lib/image.php?file={$coverimage}&size={$coversize}"></div>{/if}
+		{if $coverimage}<div id="cover_image"><img id="cover" src="lib/image.php?file={$coverimage}&size={$coversize}" /></div>{/if}
+		
+		
+		<div id="progress"><div id="progressbar" style="margin-right: {$initialprogress}px;">&nbsp;</div></div>
 
 		<div id="controls"><a href="index.php?action=prev"><img src="images/prev_button.gif" Alt="Previous" /></a><a href="index.php?action=play"><img src="images/play_button.gif" Alt="Play" /></a><a href="index.php?action=pause"><img src="images/pause_button.gif" Alt="Pause" /></a><a href="index.php?action=stop"><img src="images/stop_button.gif" Alt="Stop" /></a><a href="index.php?action=next"><img src="images/next_button.gif" Alt="Next" /></a></div>

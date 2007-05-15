@@ -6,7 +6,7 @@
 
 	/* Config relating to the display of CD covers */
 	/* music_directory must match you MPD music_directory config */
-	$_CONFIG['music_directory'] = '/home/media/data/audio';
+	$_CONFIG['music_directory'] = '/home/danbee/Music';
 	$_CONFIG['album_cover_name'] = 'folder.jpg';
 	$_CONFIG['album_cover_size'] = 130;
 

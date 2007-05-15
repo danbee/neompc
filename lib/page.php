@@ -25,6 +25,9 @@
 			$smarty->assign('current_album', $current_track['Album']);
 			$smarty->assign('current_artist', $current_track['Artist']);
 			$smarty->assign('current_file', $current_track['file']);
+			$smarty->assign('song_length', $mympd->current_track_length);
+			$smarty->assign('song_position', $mympd->current_track_position);
+			$smarty->assign('mpd_state', $mympd->state);
 			
 			$cover_link = $_CONFIG['music_directory'] . '/'
 						. substr($current_track['file'], 0, strrpos($current_track['file'], '/') + 1) 
@@ -36,6 +39,10 @@
 			}
 			
 			$time_left = (($mympd->current_track_length - $mympd->current_track_position) + 2) * 1000;
+			
+			$initialprogress = round(200 - (($mympd->current_track_position / $mympd->current_track_length) * 200));
+			
+			$smarty->assign('initialprogress', $initialprogress);
 			
 			//echo $time_left / 1000;
 			
