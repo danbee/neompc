@@ -2,7 +2,7 @@
 	/* Smarty stuff */
 
 	$version = 0.5;
-	
+
 	if (get_magic_quotes_gpc()) {
 		/* Deal with Magic quotes. We can safely strip these off as we're not using a database. */
 		$_REQUEST = array_map('stripslashes', $_REQUEST);
@@ -65,6 +65,7 @@
 	$smarty->assign('control_link', 'index.php?page=control');
 	$smarty->assign('playlist_play_link', 'index.php?page=control&action=play&skipto=');
 	$smarty->assign('playlist_clear_link', 'index.php?action=clear');
+	$smarty->assign('mpd_state', $mympd->state);
 
 	/* first check for a page cookie, and default to displaying the playlist */
 	if ($_GET['page']) {
@@ -78,7 +79,7 @@
 	if (!$page) {
 		$page = 'playlist';
 	}
-	
+
 	//echo $mympd->current_track_length, ' - ', $mympd->current_track_position;
 
 	$smarty->assign('page', $page);
