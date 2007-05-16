@@ -38,11 +38,15 @@
 				$smarty->assign('coversize', $_CONFIG['album_cover_size']);
 			}
 			
-			$time_left = (($mympd->current_track_length - $mympd->current_track_position) + 2) * 1000;
+			$time_left = (($mympd->current_track_length - $mympd->current_track_position) + 1) * 1000;
 			
 			$initialprogress = round(200 - (($mympd->current_track_position / $mympd->current_track_length) * 200));
 			
 			$smarty->assign('initialprogress', $initialprogress);
+			$smarty->assign('initialmin', date('i', $mympd->current_track_position));
+			$smarty->assign('initialsec', date('s', $mympd->current_track_position));
+			$smarty->assign('totalmin', date('i', $mympd->current_track_length));
+			$smarty->assign('totalsec', date('s', $mympd->current_track_length));
 			
 			//echo $time_left / 1000;
 			

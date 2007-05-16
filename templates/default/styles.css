@@ -157,5 +157,11 @@ img#cover {
 	border: 1px solid #666;
 	padding: 2px;
 }
+#tracktime {
+	font-weight: bold;
+}
+#tracktime #total {
+	color: #666;
+}
 
 {/literal}
