@@ -22,6 +22,7 @@
 	$smarty->cache_dir = 'smarty/cache/';
 
 	$smarty->assign('version', $version);
+	$smarty->assign('template', $_CONFIG['template']);
 
 	include('lib/mpd.class.php');
 	$mympd = new mpd('localhost',6600);

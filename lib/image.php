@@ -7,7 +7,7 @@
 	$height = $_GET['size'];
 
 	// Content type
-	header('Content-type: image/jpeg');
+	//header('Content-type: image/jpeg');
 
 	$script_root = substr($_SERVER["SCRIPT_FILENAME"], 0, strrpos(substr($_SERVER["SCRIPT_FILENAME"], 0, strrpos($_SERVER["SCRIPT_FILENAME"], '/')), '/'));
 
