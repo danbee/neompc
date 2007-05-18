@@ -8,7 +8,6 @@
 	/* music_directory must match you MPD music_directory config */
 	$_CONFIG['music_directory'] = '/home/danbee/Music';
 	$_CONFIG['album_cover_name'] = 'folder.jpg';
-	$_CONFIG['album_cover_size'] = 130;
 
 	/* Template to use for displaying the pages */
 	$_CONFIG['template'] = 'default';

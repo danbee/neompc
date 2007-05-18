@@ -23,6 +23,8 @@
 
 	$smarty->assign('version', $version);
 	$smarty->assign('template', $_CONFIG['template']);
+	
+	require("templates/${_CONFIG['template']}/config.inc.php");
 
 	include('lib/mpd.class.php');
 	$mympd = new mpd('localhost',6600);
