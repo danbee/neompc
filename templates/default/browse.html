@@ -1,6 +1,6 @@
 
 			<ul id="crumb_trail">
-				<li><a href="index.php?browse=/"><img src="images/home.gif" alt="Home" /></a></li>
+				<li><a href="index.php?browse=/"><img src="templates/{$template}/images/home.gif" alt="Home" /></a></li>
 
 				{foreach from=$dir_list item=dir_list_item}
 					<li>&bull; <a href="index.php?browse={$dir_list_item.path}">{$dir_list_item.name|escape:'html'}</a></li>
@@ -8,7 +8,7 @@
 
 			</ul>
 
-			<div id="buttons"><a href="index.php?action=playall"><img src="images/playall.gif" /></a> <a href="index.php?action=addall"><img src="images/addall.gif" /></a></div>
+			<div id="buttons"><a href="index.php?action=playall"><img src="templates/{$template}/images/playall.gif" /></a> <a href="index.php?action=addall"><img src="templates/{$template}/images/addall.gif" /></a></div>
 
 			<ul class="list">
 				{foreach from=$browselist item=browselist_item}
