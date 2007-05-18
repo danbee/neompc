@@ -1,6 +1,6 @@
 <?php
 	// The file
-	$filename = $_GET['file'];
+	$filename = stripslashes($_GET['file']);
 
 	// Set a maximum height and width
 	$width = $_GET['size'];
