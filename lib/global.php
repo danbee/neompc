@@ -1,7 +1,7 @@
 <?php
 	/* Smarty stuff */
 
-	$version = 0.5;
+	$version = '0.5.1';
 
 	if (get_magic_quotes_gpc()) {
 		/* Deal with Magic quotes. We can safely strip these off as we're not using a database. */
