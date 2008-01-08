@@ -197,8 +197,14 @@ class mpd {
 				return NULL;
 			}
 
-			if (strlen($arg1) > 0) $cmdStr .= " \"$arg1\"";
-			if (strlen($arg2) > 0) $cmdStr .= " \"$arg2\"";
+			if (strlen($arg1) > 0) {
+				$arg1 = str_replace("\"", "\\\"", $arg1);
+				$cmdStr .= " \"$arg1\"";
+			}
+			if (strlen($arg2) > 0) {
+				$arg2 = str_replace("\"", "\\\"", $arg2);
+				$cmdStr .= " \"$arg2\"";
+			}
 			fputs($this->mpd_sock,"$cmdStr\n");
 			while(!feof($this->mpd_sock)) {
 				$response = fgets($this->mpd_sock,1024);
@@ -241,8 +247,14 @@ class mpd {
 			if ( strlen($this->command_queue) == 0 ) {
 				$this->command_queue = MPD_CMD_START_BULK . "\n";
 			}
-			if (strlen($arg1) > 0) $cmdStr .= " \"$arg1\"";
-			if (strlen($arg2) > 0) $cmdStr .= " \"$arg2\"";
+			if (strlen($arg1) > 0) {
+				$arg1 = str_replace("\"", "\\\"", $arg1);
+				$cmdStr .= " \"$arg1\"";
+			}
+			if (strlen($arg2) > 0) {
+				$arg2 = str_replace("\"", "\\\"", $arg2);
+				$cmdStr .= " \"$arg2\"";
+			}
 
 			$this->command_queue .= $cmdStr ."\n";
 
@@ -781,7 +793,7 @@ class mpd {
 			$plistFile = "";
 			$plCounter = -1;
 			while ( $plistLine ) {
-				list ( $element, $value ) = split(": ",$plistLine);
+				list ( $element, $value ) = split(": ",$plistLine, 2);
 				if ( $element == "file" ) {
 					$plCounter++;
 					$plistArray[$plCounter]["file"] = $value;
