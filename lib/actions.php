@@ -75,7 +75,7 @@
 
 		global $_CONFIG, $mympd;
 
-		if ($browse == '/') {
+		if ($browse == $_CONFIG['separator']) {
 			$browse = '';
 		}
 
@@ -107,8 +107,8 @@
 
 			case 'metadata':
 
-				$browse_bits = split('/', $browse);
-
+				$browse_bits = explode($_CONFIG['separator'], $browse);
+				
 				if (is_array($browse_bits)) {
 
 					if ($browse_bits[1]) {

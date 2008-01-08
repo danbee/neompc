@@ -14,7 +14,12 @@
 
 			$smarty->assign('show_extra_track_info', $_CONFIG['playlist_extra_track_info']);
 
-			$smarty->assign('playlist', $mympd->playlist);
+			$playlist = $mympd->playlist;
+			foreach ($playlist as $key => $playlist_item) {
+				$playlist[$key]['file_name'] = substr($playlist_item['file'], strrpos($playlist_item['file'], '/') + 1);
+			}
+
+			$smarty->assign('playlist', $playlist);
 			$smarty->assign('playing', $mympd->current_track_id);
 			break;
 		case "control":
@@ -25,6 +30,7 @@
 			$smarty->assign('current_album', $current_track['Album']);
 			$smarty->assign('current_artist', $current_track['Artist']);
 			$smarty->assign('current_file', $current_track['file']);
+			$smarty->assign('current_filename', substr($current_track['file'], strrpos($current_track['file'], '/') + 1));
 			$smarty->assign('song_length', $mympd->current_track_length);
 			$smarty->assign('song_position', $mympd->current_track_position);
 			$smarty->assign('mpd_state', $mympd->state);
@@ -64,15 +70,17 @@
 			switch ($_CONFIG['browse_mode']) {
 
 				case 'metadata': /* metadata based browsing.  this will list artists->albums->tracks */
+				
+					$home_link = 'index.php?browse=|';
 
 					/* split the browse get var if present */
 					if ($_GET['browse']) {
 						setcookie('browse', $_GET['browse']);
-						if ($_GET['browse'] == '/') {
+						if ($_GET['browse'] == '|') {
 							$meta_level = 'artists';
 						}
 						else {
-							$browse_bits = split('/', $_GET['browse']);
+							$browse_bits = explode('|', $_GET['browse']);
 							if ($browse_bits[0]) {
 								$artist = $browse_bits[0];
 								$meta_level = 'albums';
@@ -84,11 +92,11 @@
 						}
 					}
 					elseif ($_COOKIE['browse']) {
-						if ($_COOKIE['browse'] == '/') {
+						if ($_COOKIE['browse'] == '|') {
 							$meta_level = 'artists';
 						}
 						else {
-							$browse_bits = split('/', $_COOKIE['browse']);
+							$browse_bits = explode('|', $_COOKIE['md_browse']);
 							if ($browse_bits[0]) {
 								$artist = $browse_bits[0];
 								$meta_level = 'albums';
@@ -121,7 +129,7 @@
 							$albums = $mympd->GetAlbums($artist);
 
 							foreach ($albums as $the_album) {
-								$browselist[] = array('metaAlbum' => $the_album, 'path' => $artist . '/' . $the_album);
+								$browselist[] = array('metaAlbum' => $the_album, 'path' => $artist . '|' . $the_album);
 							}
 
 							$dir_list = array(array('name' => stripslashes($artist), 'path' => urlencode($artist)));
@@ -148,17 +156,20 @@
 								usort($browselist, "track_sort");
 							}
 
-							$dir_list = array(array('name' => $artist, 'path' => urlencode($artist)), array('name' => $album, 'path' => urlencode($artist . '/' . $album)));
+							$dir_list = array(array('name' => $artist, 'path' => urlencode($artist)), array('name' => $album, 'path' => urlencode($artist . '|' . $album)));
 
 							break;
 					}
 
 					$smarty->assign('dir_list', $dir_list);
 					$smarty->assign('browselist', $browselist);
+					$smarty->assign('home_link', $home_link);
 
 					break;
 
 				case 'filesystem': /* filesystem based browsing.  this will follow the filesystem tree */
+
+					$home_link = 'index.php?browse=/';
 
 					/* get the browse position from the cookie or from get */
 					if ($_GET['browse']) {
@@ -169,7 +180,8 @@
 						$browse = $_COOKIE['browse'];
 					}
 
-					$browse = $browse;
+					//$browse = $browse;
+					// ^ wtf?!?
 
 					/* make the path array */
 
@@ -207,8 +219,7 @@
 					//*/
 
 					foreach ($browselist as $key => $browselist_item) {
-
-
+						
 						if ($browselist_item['directory']) {
 							$lastpos = strrpos($browselist_item['directory'], '/');
 							if ($lastpos !== false) {
@@ -222,7 +233,11 @@
 
 						/* add a token for files currently on the playlist */
 						foreach($mympd->playlist as $playlist_item) {
+							$lastpos = strrpos($browselist_item['file'], '/');
+							$browselist[$key]['file_name'] = substr($browselist_item['file'], $lastpos + 1);
+							
 							if ($browselist_item['file'] == $playlist_item['file']) {
+							
 								$browselist[$key]['in_playlist'] = "1";
 							}
 						}
@@ -231,6 +246,7 @@
 					//print_r($browselist);
 
 					$smarty->assign('browselist', $browselist);
+					$smarty->assign('home_link', $home_link);
 
 					break;
 			}

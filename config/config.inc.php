@@ -4,6 +4,11 @@
 	** NeoMPC Config File
 	**************************************/
 
+	/* Server details */
+	$_CONFIG['server'] = 'localhost';
+	$_CONFIG['password'] = '';
+	$_CONFIG['port'] = '6600';
+
 	/* Config relating to the display of CD covers */
 	/* music_directory must match you MPD music_directory config */
 	$_CONFIG['music_directory'] = '/home/danbee/Music';
@@ -14,6 +19,7 @@
 
 	/* Browse mode can be 'filesystem' or 'metadata' */
 	$_CONFIG['browse_mode'] = 'metadata';
+	//$_CONFIG['browse_mode'] = 'filesystem';
 
 	$_CONFIG['sort_by_tracknumber'] = true;
 

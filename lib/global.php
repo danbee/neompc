@@ -12,6 +12,15 @@
 	}
 
 	require('config/config.inc.php');
+	
+	switch ($_CONFIG['browse_mode']) {
+		case 'filesystem':
+			$_CONFIG['separator'] = '/';
+			break;
+		case 'metadata':
+			$_CONFIG['separator'] = '|';
+			break;
+	}
 
 	define('SMARTY_DIR', 'lib/smarty/libs/');
 	require(SMARTY_DIR . 'Smarty.class.php');
@@ -27,7 +36,12 @@
 	require("templates/${_CONFIG['template']}/config.inc.php");
 
 	include('lib/mpd.class.php');
-	$mympd = new mpd('localhost',6600);
+	if ($_CONFIG['password'] != '') {
+		$mympd = new mpd($_CONFIG['server'], $_CONFIG['port'], $_CONFIG['password']);
+	}
+	else {
+		$mympd = new mpd($_CONFIG['server'], $_CONFIG['port']);
+	}
 
 	if (!$mympd->connected) {
 		echo "<p>Problem connecting to MPD!</p>";
