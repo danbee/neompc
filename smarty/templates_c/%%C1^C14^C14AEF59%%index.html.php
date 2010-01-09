@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.9, created on 2010-01-09 15:30:55
+<?php /* Smarty version 2.6.26, created on 2010-01-09 16:53:35
          compiled from default/index.html */ ?>
 <!DOCTYPE html>
 <html>
@@ -23,7 +23,7 @@ unset($_smarty_tpl_vars);
 
 		<script type="text/javascript">
 			<?php $_smarty_tpl_vars = $this->_tpl_vars;
-$this->_smarty_include(array('smarty_include_tpl_file' => "../lib/javascript.js", 'smarty_include_vars' => array()));
+$this->_smarty_include(array('smarty_include_tpl_file' => "../lib/js/javascript.js", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>
