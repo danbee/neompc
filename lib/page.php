@@ -25,6 +25,7 @@
 		case "control":
 			/* get the currently playing track */
 			$current_track = $mympd->playlist[$mympd->current_track_id];
+			$smarty->assign('progressbar_width', $_CONFIG['progress_bar_width']);
 			$smarty->assign('current_track_no', $mympd->current_track_id);
 			$smarty->assign('current_title', $current_track['Title']);
 			$smarty->assign('current_album', $current_track['Album']);
@@ -46,7 +47,7 @@
 			
 			$time_left = (($mympd->current_track_length - $mympd->current_track_position) + 1) * 1000;
 			
-			$initialprogress = round(200 - (($mympd->current_track_position / $mympd->current_track_length) * 200));
+			$initialprogress = round(280 - (($mympd->current_track_position / $mympd->current_track_length) * 280));
 			
 			$smarty->assign('initialprogress', $initialprogress);
 			$smarty->assign('initialmin', date('i', $mympd->current_track_position));

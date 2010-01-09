@@ -11,15 +11,15 @@
 
 	/* Config relating to the display of CD covers */
 	/* music_directory must match you MPD music_directory config */
-	$_CONFIG['music_directory'] = '/home/danbee/Music';
+	$_CONFIG['music_directory'] = '/pub/media/audio';
 	$_CONFIG['album_cover_name'] = 'folder.jpg';
 
 	/* Template to use for displaying the pages */
 	$_CONFIG['template'] = 'default';
 
 	/* Browse mode can be 'filesystem' or 'metadata' */
-	$_CONFIG['browse_mode'] = 'metadata';
-	//$_CONFIG['browse_mode'] = 'filesystem';
+	//$_CONFIG['browse_mode'] = 'metadata';
+	$_CONFIG['browse_mode'] = 'filesystem';
 
 	$_CONFIG['sort_by_tracknumber'] = true;
 
