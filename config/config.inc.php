@@ -11,7 +11,7 @@
 
 	/* Config relating to the display of CD covers */
 	/* music_directory must match you MPD music_directory config */
-	$_CONFIG['music_directory'] = '/pub/media/audio';
+	$_CONFIG['music_directory'] = '/var/lib/mpd/music';
 	$_CONFIG['album_cover_name'] = 'folder.jpg';
 
 	/* Template to use for displaying the pages */
