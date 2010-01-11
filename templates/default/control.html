@@ -1,21 +1,46 @@
 		<div id="song_display">
 	
-			<div id="cover_image">{if $coverimage}<img id="cover" title="{$current_album}" src="lib/image.php?file={$coverimage|escape:'url'}&size={$coversize}" />{else}<img id="cover" title="{$current_album}" src="templates/default/images/default_cover.png" />{/if}</div>
+			<!--<div id="cover_image">{:if $coverimage:}<img id="cover" title="{:$current_album:}" src="lib/image.php?file={:$coverimage|escape:'url':}&size={:$coversize:}" />{:else:}<img id="cover" title="{:$current_album:}" src="templates/default/images/default_cover.png" />{:/if:}</div>
 			
-			<div id="album_info"><p class="artist">{$current_artist}</p>{if $current_album}<p class="album">{$current_album}</p>{/if}</div>
-		{if $mpd_state == 'play' || $mpd_state == 'pause'}<div id="tracktime"><span id="min">{$initialmin}</span>:<span id="sec">{$initialsec}</span> <span id="total">({$totalmin}:{$totalsec})</span></div>{/if}
-
-		{if $mpd_state == 'play' || $mpd_state == 'pause'}<div id="progress"><div id="progressbar" style="margin-right: {$initialprogress}px;">&nbsp;</div></div>{else}<div id="progress"></div>{/if}
-
+			<div id="album_info"><p id="artist">{:$current_artist:}</p>{:if $current_album:}<p id="album">{:$current_album:}</p>{:/if:}</div>
+	
+			{:if $mpd_state == 'play' || $mpd_state == 'pause':}<div id="tracktime"><span id="min">{:$initialmin:}</span>:<span id="sec">{:$initialsec:}</span> <span id="total">({:$totalmin:}:{:$totalsec:})</span></div>{:/if:}
+	
+			{:if $mpd_state == 'play' || $mpd_state == 'pause':}<div id="progress"><div id="progressbar" style="margin-right: {:$initialprogress:}px;">&nbsp;</div></div>{:else:}<div id="progress"></div>{:/if:}
+	
 			<div id="song_info">
-				{if $current_title}<span class="pos">{$current_track_no+1|string_format:"%02d"}.</span> <span class="title">{$current_title}</span><br /><br />{elseif $current_filename}{$current_filename}{else}[Nothing playing]{/if}
+				{:if $current_title:}<span id="pos">{:$current_track_no+1|string_format:"%02d":}.</span> <span id="title">{:$current_title:}</span><br /><br />{:elseif $current_filename:}{:$current_filename:}{:else:}[Nothing playing]{:/if:}
 			
+			</div>-->
+			
+			<div id="cover_image"><img id="cover" title="{:$current_album:}" src="templates/{:$template:}/images/default_cover.png" /></div>
+			
+			<div id="album_info"><p id="artist"></p><p id="album"></p></div>
+	
+			<div id="tracktime"><span id="current">--:--</span></div>
+	
+			<div id="progress"><div id="progressbar" style="margin-right: 100%;">&nbsp;</div></div>
+	
+			<div id="song_info">
+				<span id="pos"></span> <span id="title"></span>			
 			</div>
 			
 		</div>
 
 		<div id="controls">
-			<a href="index.php?action=prev"><img src="templates/{$template}/images/prev_button.png" Alt="Previous" width="50" height="50" /></a><a href="index.php?action=play"><img src="templates/{$template}/images/play_button.png" Alt="Play" width="50" height="50" /></a><a href="index.php?action=pause"><img src="templates/{$template}/images/pause_button.png" Alt="Pause" width="50" height="50" /></a><a href="index.php?action=stop"><img src="templates/{$template}/images/stop_button.png" Alt="Stop" width="50" height="50" /></a><a href="index.php?action=next"><img src="templates/{$template}/images/next_button.png" Alt="Next" width="50" height="50" /></a>
+			<div class="container">
+				<ul id="main_controls">
+					<li><a rel="prev" id="prev_button" class="control_button" href="index.php?action=prev"></a></li>
+					<li><a rel="playpause" id="playpause_button" class="control_button" href="index.php?action=playpause"></a></li>
+					<li><a rel="stop" id="stop_button" class="control_button" href="index.php?action=stop"></a></li>
+					<li><a rel="next" id="next_button" class="control_button" href="index.php?action=next"></a></li>
+				</ul>
+				<div id="volume_repeat">
+					<div id="volume_container"></div>
+					<a rel="volume" id="volume_button"></a>
+					<a rel="repeat" id="repeat_button" class="control_button" href="index.php?action=repeat"></a>
+				</div>
+			</div>
 		</div>
 		
 

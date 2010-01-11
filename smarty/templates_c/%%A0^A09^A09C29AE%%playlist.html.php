@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.9, created on 2009-07-01 08:30:49
+<?php /* Smarty version 2.6.26, created on 2010-01-10 12:08:37
          compiled from default/playlist.html */ ?>
 			<?php if ($this->_tpl_vars['playlist']): ?>
 			<div id="buttons"><a href="<?php echo $this->_tpl_vars['playlist_clear_link']; ?>

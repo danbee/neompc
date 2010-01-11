@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2010-01-09 16:53:35
+<?php /* Smarty version 2.6.26, created on 2010-01-10 14:03:32
          compiled from default/index.html */ ?>
 <!DOCTYPE html>
 <html>
@@ -17,18 +17,23 @@ unset($_smarty_tpl_vars);
  ?>
 		</style>
 		
-	</head>
-
-	<body>
-
+		<script type="text/javascript" src="lib/js/jquery-min.js"></script>
 		<script type="text/javascript">
+			progressbar_width = <?php echo $this->_tpl_vars['progressbar_width']; ?>
+;
+			template = '<?php echo $this->_tpl_vars['template']; ?>
+';
 			<?php $_smarty_tpl_vars = $this->_tpl_vars;
-$this->_smarty_include(array('smarty_include_tpl_file' => "../lib/js/javascript.js", 'smarty_include_vars' => array()));
+$this->_smarty_include(array('smarty_include_tpl_file' => "../lib/js/neompc.js", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>
 		</script>
 		
+	</head>
+
+	<body>
+
 		<?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "default/menu.html", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;

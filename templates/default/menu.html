@@ -1,8 +1,8 @@
 		<div id="menu">
 			<ul>
-				<li><a {if $page == 'browse'}class="selected" {/if}href="{$browse_link}">Browse</a></li>
-				<li><a {if $page == 'playlist'}class="selected" {/if}href="{$playlist_link}">Playlist</a></li>
-				<li><a {if $page == 'control'}class="selected" {/if}href="{$control_link}">Control</a></li>
+				<li><a {:if $page == 'browse':}class="selected" {:/if:}href="{:$browse_link:}">Browse</a></li>
+				<li><a {:if $page == 'playlist':}class="selected" {:/if:}href="{:$playlist_link:}">Playlist</a></li>
+				<li><a {:if $page == 'control':}class="selected" {:/if:}href="{:$control_link:}">Control</a></li>
 			</ul>
 		</div>
 

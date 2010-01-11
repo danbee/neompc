@@ -34,6 +34,13 @@
 	$smarty->assign('template', $_CONFIG['template']);
 	
 	require("templates/${_CONFIG['template']}/config.inc.php");
+	
+	if ($_CONFIG['smarty_left_delimiter']) {
+		$smarty->left_delimiter = $_CONFIG['smarty_left_delimiter'];
+	}
+	if ($_CONFIG['smarty_right_delimiter']) {
+		$smarty->right_delimiter = $_CONFIG['smarty_right_delimiter'];
+	}
 
 	include('lib/mpd.class.php');
 	if ($_CONFIG['password'] != '') {

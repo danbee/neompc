@@ -45,18 +45,28 @@
 			header("Location: index.php");
 			break;
 
-		case "play":
-			$mympd->Play();
-			header("Location: index.php");
-			break;
-
 		case "stop":
 			$mympd->Stop();
 			header("Location: index.php");
 			break;
 
+		case "play":
+			$mympd->Play();
+			header("Location: index.php");
+			break;
+
 		case "pause":
 			$mympd->Pause();
+			header("Location: index.php");
+			break;
+
+		case 'playpause':
+			if ($mympd->state == 'play') {
+				$mympd->Pause();
+			}
+			else {
+				$mympd->Play();
+			}
 			header("Location: index.php");
 			break;
 

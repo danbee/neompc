@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.9, created on 2010-01-06 16:48:52
+<?php /* Smarty version 2.6.26, created on 2010-01-10 12:04:42
          compiled from default/menu.html */ ?>
 		<div id="menu">
 			<ul>
@@ -10,4 +10,3 @@
 ">Control</a></li>
 			</ul>
 		</div>
-
