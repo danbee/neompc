@@ -2,6 +2,9 @@
 
 	$progressbar_width = $_CONFIG['progress_bar_width'];
 	$smarty->assign('progressbar_width', $progressbar_width);
+	$smarty->assign('volume_orientation', $_CONFIG['volume_orientation']);
+	$smarty->assign('volume_min', $_CONFIG['volume_min']);
+	$smarty->assign('volume_max', $_CONFIG['volume_max']);
 	$smarty->assign('page', $page);
 
 	/* print_r($mympd->playlist); */
