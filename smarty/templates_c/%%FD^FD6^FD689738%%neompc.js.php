@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2010-01-13 17:13:45
+<?php /* Smarty version 2.6.26, created on 2010-01-13 20:15:06
          compiled from ../lib/js/neompc.js */ ?>
 progressbar_width = <?php echo $this->_tpl_vars['progressbar_width']; ?>
 ;
@@ -116,15 +116,19 @@ $(document).ready(function(){
 	
 	$('#volume_slider').draggable({
 							axis: 'y',
-							containment: 'parent',
-							opacity: 0.5,
+							containment: $('#slider_container'),
 							start: function() {
 								this.rel = '1';
+								vol_int = setInterval('ajax_control(\'volume\', new_volume);', 250);
+							},
+							drag: function() {
+								new_volume = pos_to_volume(parseInt($('#volume_slider').css('top')));
+								//ajax_control('volume', new_volume);
 							},
 							stop: function() {
-								pos = parseInt($('#volume_slider').css('top'));
-								ajax_control('volume', pos_to_volume(pos));
-								this.rel = '';
+								clearInterval(vol_int);
+								ajax_control('volume', new_volume);
+								setTimeout('$(\'#volume_slider\').attr(\'rel\', \'\');', 1000);
 							}
 						});
 

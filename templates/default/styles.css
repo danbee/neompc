@@ -233,6 +233,8 @@ img.button {
 }
 #volume_container #slider_container {
 	position: absolute;
+	padding: 0;
+	margin: 0;
 	top: 5px;
 	height: 130px;
 	width: 28px;
