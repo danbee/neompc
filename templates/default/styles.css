@@ -231,6 +231,12 @@ img.button {
 	height: 160px;
 	width: 30px;
 }
+#volume_container #slider_container {
+	position: absolute;
+	top: 5px;
+	height: 130px;
+	width: 28px;
+}
 #volume_container a#volume_hide {
 	position: absolute;
 	top: 140px;
@@ -238,7 +244,7 @@ img.button {
 	width: 30px;
 	height: 20px;
 }
-#volume_container a#volume_slider {
+#volume_container #volume_slider {
 	background: url(templates/{:$template:}/images/volume_slider.png) center center no-repeat;
 	position: absolute;
 	top: 5px;

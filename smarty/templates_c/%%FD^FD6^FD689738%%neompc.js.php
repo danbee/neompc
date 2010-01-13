@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2010-01-12 20:03:58
+<?php /* Smarty version 2.6.26, created on 2010-01-13 17:13:45
          compiled from ../lib/js/neompc.js */ ?>
 progressbar_width = <?php echo $this->_tpl_vars['progressbar_width']; ?>
 ;
@@ -10,6 +10,7 @@ volume_max = <?php echo $this->_tpl_vars['volume_max']; ?>
 ;
 vol_orientation = '<?php echo $this->_tpl_vars['volume_orientation']; ?>
 '
+vol_offset = 0;
 
 String.prototype.pad = function(l, s){
 	return (l -= this.length) > 0 ? (s = new Array(Math.ceil(l / s.length) + 1).join(s)).substr(0, s.length) + this + s.substr(0, l - s.length) : this;
@@ -21,41 +22,46 @@ function seconds_to_time(seconds) {
 }
 
 function volume_to_pos(volume) {
-	pos = volume_min + (volume / 100) * (volume_max - volume_min);
+	pos = Math.round(volume_min + ((volume / 100) * (volume_max - volume_min)));
 	return pos;
 }
 
 function pos_to_volume(pos) {
-	
+	volume = Math.round(((pos - volume_min) / (volume_max - volume_min)) * 100);
+	return volume;
 }
 
-function ajax_control(action) {
+function ajax_control(action, value) {
 	// this function will fire an AJAX call with the appropriate action.
 	// or it will simply fire an AJAX call to get the current status.
 
-	$.getJSON('control.php', {action: action},
+	$.getJSON('control.php', {action: action, value: value},
 		function(data){
 			// this is where we update the page.
-			if (data.state == 'play') {
-				$('#playpause_button').addClass('pause');
+			if (data != null) {
+				if (data.state == 'play') {
+					$('#playpause_button').addClass('pause');
+				}
+				else {
+					$('#playpause_button').removeClass('pause');
+				}
+				$('#pos').text((data.track_no > -1 ? data.track_no+'.' : ''));
+				$('#artist').text(data.artist || '');
+				$('#album').text(data.album || '');
+				$('#title').text(data.title || '');
+				$('#cover').attr('src', (data.coverimage ? data.coverimage : 'templates/'+template+'/images/default_cover.png'));
+				$('#current').text((data.position > -1 ? seconds_to_time(data.position) : '--:--'));
+				if (data.repeat == 1) {
+					$('#repeat_button').addClass('selected');
+				}
+				else {
+					$('#repeat_button').removeClass('selected');
+				}
+				if ($('#volume_slider').attr('rel') != '1') {
+					$('#volume_slider').css((vol_orientation == 'h' ? 'left' : 'top'), volume_to_pos(data.volume)+'px');
+				}
+				update_progress(data.position, data.length);
 			}
-			else {
-				$('#playpause_button').removeClass('pause');
-			}
-			$('#pos').text((data.track_no > -1 ? data.track_no+'.' : ''));
-			$('#artist').text(data.artist || '');
-			$('#album').text(data.album || '');
-			$('#title').text(data.title || '');
-			$('#cover').attr('src', (data.coverimage ? data.coverimage : 'templates/'+template+'/images/default_cover.png'));
-			$('#current').text((data.position > -1 ? seconds_to_time(data.position) : '--:--'));
-			if (data.repeat == 1) {
-				$('#repeat_button').addClass('selected');
-			}
-			else {
-				$('#repeat_button').removeClass('selected');
-			}
-			$('#volume_slider').css('top', volume_to_pos(data.volume)+'px');
-			update_progress(data.position, data.length);
 	});
 }
 
@@ -92,8 +98,6 @@ function show_volume() {
 
 $(document).ready(function(){
 	
-	update_int = null;
-	
 	$('.control_button').click(function(event){
 		ajax_control(this.rel);
 		this.blur();
@@ -105,11 +109,25 @@ $(document).ready(function(){
 		return false;
 	});
 	
-	$('#volume_container').click(function(event){
+	$('#volume_hide').click(function(event){
 		hide_volume();
 		return false;
 	});
 	
+	$('#volume_slider').draggable({
+							axis: 'y',
+							containment: 'parent',
+							opacity: 0.5,
+							start: function() {
+								this.rel = '1';
+							},
+							stop: function() {
+								pos = parseInt($('#volume_slider').css('top'));
+								ajax_control('volume', pos_to_volume(pos));
+								this.rel = '';
+							}
+						});
+
 	ajax_control();
 	ajax_int = setInterval('ajax_control()', 1000);
 	

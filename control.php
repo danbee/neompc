@@ -33,6 +33,11 @@
 			$repeat = ($mympd->repeat == 0 ? 1 : 0);
 			$mympd->SetRepeat($repeat);
 			break;
+		case 'volume':
+			$volume = $_GET['value'];
+			$mympd->SetVolume($volume);
+			die();
+			break;
 	}
 
 	echo mpd_info();
