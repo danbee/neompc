@@ -1,12 +1,14 @@
-			{:if $playlist:}
 			<div id="buttons"><a href="{:$playlist_clear_link:}"><img src="templates/{:$template:}/images/delall.gif" /></a></div>
 
-			<ul class="list">
-				{:foreach from=$playlist item=playlist_item:}
-					{:include file="default/playlist_item.html":}
-				{:/foreach:}
-			</ul>
-			{:else:}
-			<p>(Empty playlist)</p>
-			{:/if:}
+			<div id="list">
+				{:if $playlist:}
 
+				<ul class="list">
+					{:foreach from=$playlist item=playlist_item:}
+						{:include file="default/playlist_item.html":}
+					{:/foreach:}
+				</ul>
+				{:else:}
+				<p>(Empty playlist)</p>
+				{:/if:}
+			</div>

@@ -7,14 +7,14 @@ img {
 }
 a {
 	text-decoration: none;
-	color: #fff;
+	color: #333;
 }
 body {
-	background: #333 url(templates/{:$template:}/images/menu_shadow.png) center 29px repeat-x;
+	background: #333 url(templates/{:$template:}/images/menu_shadow.png) center 29px repeat-x fixed;
 	color: #fff;
-	font: 13px helvetica,verdana,sans-serif;
+	font: 14px helvetica,verdana,sans-serif;
 	text-align: center;
-	margin: 45px 0px 0px 0px;
+	margin: 30px 0px 0px 0px;
 }
 p {
 	margin-bottom: 5px;
@@ -69,25 +69,54 @@ p {
 	padding: 0px;
 	clear: left;
 }
-#page ul {
+#list {
+	background-color: #ddd;
+	color: #333;
+}
+#list ul {
 	list-style-type: none;
-	width: 280px;
+	max-width: 320px;
 	text-align: left;
 	margin-left: auto;
 	margin-right: auto;
 }
-#page ul.list {
+#list ul.list {
 	margin-top: 10px;
 }
-#page ul li {
-	padding: 0px 1px 1px 0px;
-	border-top: 1px solid #666;
+#list ul li {
+	padding: 3px 10px 3px 10px;
+	border-top: 1px solid white;
+	border-bottom: 1px solid #aaa;
+}
+#list li .pos {
+	float: left;
+	padding-right: 10px;
+	padding-top: 3px;
+	font-size: 22px;
+	color: #666;
+	text-shadow: 1px 1px 2px rgba(255, 255, 255, 1);
+	font-weight: bold;
+}
+li .play {
+	display: block;
+}
+li .remove {
+	float: right;
+	padding: 5px 0px 3px;
+	display: block;
+}
+li.playing {
+	background: #ccc;
+	border-bottom: 1px solid #999;
+}
+li .title {
+	font-weight: bold;
 }
 #song_display {
 	position: relative;
 	width: 280px;
 	height: 217px;
-	margin: 0px auto 5px;
+	margin: 45px auto 5px;
 	/* height: 55px; */
 	text-align: left;
 	font-size: 14px;
@@ -264,9 +293,6 @@ img.button {
 	display: inline;
 	margin-left: 3px;
 	border: 0px none !important;
-}
-li.playing {
-	background: #444;
 }
 #progress {
 	background: #222 url(templates/{:$template:}/images/progress_back.png) center center repeat-x;

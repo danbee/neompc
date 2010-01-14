@@ -10,8 +10,10 @@
 
 			<div id="buttons"><a href="index.php?action=playall"><img src="templates/{:$template:}/images/playall.gif" /></a> <a href="index.php?action=addall"><img src="templates/{:$template:}/images/addall.gif" /></a></div>
 
-			<ul class="list">
-				{:foreach from=$browselist item=browselist_item:}
-					{:include file="default/browselist_item.html":}
-				{:/foreach:}
-			</ul>
+			<div id="list">
+				<ul class="list">
+					{:foreach from=$browselist item=browselist_item:}
+						{:include file="default/browselist_item.html":}
+					{:/foreach:}
+				</ul>
+			</div>
