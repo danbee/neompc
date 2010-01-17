@@ -65,6 +65,24 @@ p {
 	width: 106px;
 	text-shadow: 0 0 12px rgba(150, 210, 255, 0.9);
 }
+#browse_parent {
+	height: 30px;
+	padding: 0;
+	width: 320px;
+	margin: 0 auto;
+}
+#browse_parent p {
+	padding: 8px 10px;
+	text-align: left;
+}
+#browse_parent a#browse_back {
+	display: block;
+	float: left;
+	width: 45px;
+	height: 30px;
+	margin-right: 10px;
+	background: url(templates/{:$template:}/images/back.png) center center no-repeat;
+}
 #page {
 	padding: 0px;
 	clear: left;
@@ -72,6 +90,7 @@ p {
 #list {
 	background-color: #ddd;
 	color: #333;
+	margin: 0;
 }
 #list ul {
 	list-style-type: none;
@@ -81,7 +100,7 @@ p {
 	margin-right: auto;
 }
 #list ul.list {
-	margin-top: 10px;
+	margin-top: 0;
 }
 #list ul li {
 	padding: 3px 10px 3px 10px;

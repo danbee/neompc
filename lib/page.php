@@ -136,7 +136,7 @@
 							foreach ($albums as $the_album) {
 								$browselist[] = array('metaAlbum' => $the_album, 'path' => $artist . '|' . $the_album);
 							}
-
+							
 							$dir_list = array(array('name' => stripslashes($artist), 'path' => urlencode($artist)));
 
 							break;
@@ -192,20 +192,25 @@
 
 					if ($browse == '/') {
 						$browse = '';
+						$browse_list = array('/');
+					}
+					else {
+						$browse_list = array_merge(array('/'), explode('/', $browse));
 					}
 
-					$browse_list = explode('/', $browse);
+					//print_r($browse_list);
 
-					//print_r($browse);
-
-					if ($browse) {
-
-						foreach ($browse_list as $browse_item) {
-							$path .= $browse_item . '/';
-							$dir_list[] = array('path' => urlencode(trim($path, '/')), 'name' => $browse_item);
-						}
-
+					foreach ($browse_list as $key => $browse_item) {
+						$path .= $browse_item . '/';
+						$dir_list[] =	array(
+											'path' => ($path == '//' ? '/' : urlencode(trim($path, '/'))),
+											'name' => $browse_item
+										);
 					}
+					
+					$smarty->assign('browse_header', $browse_item);
+					$parent_key = $key - 1;
+					$smarty->assign('browse_parent_link', $dir_list[$parent_key]['path']);
 
 					$smarty->assign('dir_list', $dir_list);
 
