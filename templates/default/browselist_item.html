@@ -1,22 +1,45 @@
 
-				{:if $browselist_item.directory:}
+			{:if $browselist_item.directory:}
 
-				<li><a href="index.php?browse={:$browselist_item.directory|escape:'url':}"><img src="templates/{:$template:}/images/folder.png" class="icon" /> {:$browselist_item.directory_name|escape:'html':}</a></li>
+				<li class="dir">
+					<a class="browse" href="index.php?browse={:$browselist_item.directory|escape:'url':}">{:$browselist_item.directory_name|escape:'html':}</a>
+				</li>
 
-				{:elseif $browselist_item.metaArtist:}
+			{:elseif $browselist_item.metaArtist:}
 
-				<li><a href="index.php?browse={:$browselist_item.path|escape:'url':}"><img src="templates/{:$template:}/images/artist.gif" class="icon" /> {:$browselist_item.metaArtist|escape:'html':}</a></li>
+				<li class="artist">
+					<a class="browse" href="index.php?browse={:$browselist_item.path|escape:'url':}">{:$browselist_item.metaArtist|escape:'html':}</a>
+				</li>
 
-				{:elseif $browselist_item.metaAlbum:}
+			{:elseif $browselist_item.metaAlbum:}
 
-				<li><a href="index.php?browse={:$browselist_item.path|escape:'url':}"><img src="templates/{:$template:}/images/album.gif" class="icon" /> {:$browselist_item.metaAlbum|escape:'html':}</a></li>
+				<li class="album">
+					<a class="browse" href="index.php?browse={:$browselist_item.path|escape:'url':}">{:$browselist_item.metaAlbum|escape:'html':}</a>
+				</li>
 
-				{:elseif $browselist_item.Title:}
+			{:elseif $browselist_item.Title:}
 
-				{:if $browselist_item.in_playlist:}<li class="playing">{:else:}<li>{:/if:}<a href="{:$browselist_add_link:}{:$browselist_item.file|escape:'url':}"><img src="templates/{:$template:}/images/add.gif" alt="Add" class="button" /></a><a href="{:$browselist_play_link:}{:$browselist_item.file|escape:'url':}"><img src="templates/{:$template:}/images/play.gif" alt="Play" class="button" /></a><img src="templates/{:$template:}/images/music.png" class="icon" /> {:if $browselist_item.Title|escape:'html':}<span class="title">{:$browselist_item.Title|escape:'html':}</span>{:if $browselist_item.Artist && $show_extra_track_info:}<br /><span class="artist">{:$browselist_item.Artist|escape:'html':}</span> {:if $browselist_item.Album:}<span class="album">({:$browselist_item.Album|escape:'html':})</span>{:/if:}{:/if:}{:else:}{:$browselist_item.file_name|escape:'html':}{:/if:}</li>
+				{:if $browselist_item.in_playlist:}
+				<li class="track playing">
+				{:else:}
+				<li class="track">
+				{:/if:}
+					<a class="add" href="{:$browselist_add_link:}{:$browselist_item.file|escape:'url':}"><img src="templates/{:$template:}/images/add.png" alt="Add" class="button" /></a>
+					<a class="play" href="{:$browselist_play_link:}{:$browselist_item.file|escape:'url':}"><img src="templates/{:$template:}/images/play.png" alt="Play" class="button" /></a>
+					<a class="browse">
+				{:if $browselist_item.Title|escape:'html':}
+					<span class="title">{:$browselist_item.Title|escape:'html':}</span>
+					{:if $browselist_item.Artist && $show_extra_track_info:}<br /><span class="artist">{:$browselist_item.Artist|escape:'html':}</span> {:if $browselist_item.Album:}<span class="album">({:$browselist_item.Album|escape:'html':})</span>{:/if:}{:/if:}{:else:}{:$browselist_item.file_name|escape:'html':}{:/if:}
+					</a>
+				</li>
 
-				{:elseif $browselist_item.file:}
+			{:elseif $browselist_item.file:}
 
-				{:if $browselist_item.in_playlist:}<li class="playing">{:else:}<li>{:/if:}<a href="{:$browselist_add_link:}{:$browselist_item.file|escape:'url':}"><img src="templates/{:$template:}/images/add.gif" alt="Add" class="button" /></a><a href="{:$browselist_play_link:}{:$browselist_item.file|escape:'url':}"><img src="templates/{:$template:}/images/play.gif" alt="Play" class="button" /></a><img src="templates/{:$template:}/images/note.gif" class="icon" /> {:if $browselist_item.Title|escape:'html':}<span class="title">{:$browselist_item.Title|escape:'html':}</span>{:if $browselist_item.Artist && $show_extra_track_info:}<br /><span class="artist">{:$browselist_item.Artist|escape:'html':}</span> {:if $browselist_item.Album:}<span class="album">({:$browselist_item.Album|escape:'html':})</span>{:/if:}{:/if:}{:else:}{:$browselist_item.file_name|escape:'html':}{:/if:}</li>
+				{:if $browselist_item.in_playlist:}
+				<li class="playing">
+				{:else:}
+				<li>
+				{:/if:}
+					<a href="{:$browselist_add_link:}{:$browselist_item.file|escape:'url':}"><img src="templates/{:$template:}/images/add.png" alt="Add" class="button" /></a><a href="{:$browselist_play_link:}{:$browselist_item.file|escape:'url':}"><img src="templates/{:$template:}/images/play.png" alt="Play" class="button" /></a><img src="templates/{:$template:}/images/note.gif" class="icon" /> {:if $browselist_item.Title|escape:'html':}<span class="title">{:$browselist_item.Title|escape:'html':}</span>{:if $browselist_item.Artist && $show_extra_track_info:}<br /><span class="artist">{:$browselist_item.Artist|escape:'html':}</span> {:if $browselist_item.Album:}<span class="album">({:$browselist_item.Album|escape:'html':})</span>{:/if:}{:/if:}{:else:}{:$browselist_item.file_name|escape:'html':}{:/if:}</li>
 
 				{:/if:}

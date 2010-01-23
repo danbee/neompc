@@ -65,22 +65,22 @@ p {
 	width: 106px;
 	text-shadow: 0 0 12px rgba(150, 210, 255, 0.9);
 }
-#browse_parent {
+#list_header {
 	height: 30px;
 	padding: 0;
 	width: 320px;
 	margin: 0 auto;
 }
-#browse_parent p {
+#list_header p {
 	padding: 8px 10px;
 	text-align: left;
 }
-#browse_parent a#browse_back {
+#list_header a#browse_back {
 	display: block;
 	float: left;
-	width: 45px;
+	width: 30px;
 	height: 30px;
-	margin-right: 10px;
+	margin-right: 5px;
 	background: url(templates/{:$template:}/images/back.png) center center no-repeat;
 }
 #page {
@@ -102,10 +102,23 @@ p {
 #list ul.list {
 	margin-top: 0;
 }
-#list ul li {
-	padding: 3px 10px 3px 10px;
+#list ul .browse {
+	display: block;
+	padding: 5px 10px 5px 35px;
 	border-top: 1px solid white;
 	border-bottom: 1px solid #aaa;
+}
+#list ul .playlist_item {
+	display: block;
+	padding: 5px 10px 5px 10px;
+	border-top: 1px solid white;
+	border-bottom: 1px solid #aaa;
+}
+#list ul li.dir {
+	background: url(templates/{:$template:}/images/folder.png) 10px center no-repeat;
+}
+#list ul li.track {
+	background: url(templates/{:$template:}/images/music.png) 10px center no-repeat;
 }
 #list li .pos {
 	float: left;
@@ -119,14 +132,12 @@ p {
 li .play {
 	display: block;
 }
-li .remove {
+li .remove .add .play {
 	float: right;
-	padding: 5px 0px 3px;
+	padding: 5px 0px 3px 5px;
 	display: block;
 }
-li.playing {
-	background: #ccc;
-	border-bottom: 1px solid #999;
+li.playing a {
 }
 li .title {
 	font-weight: bold;
@@ -166,9 +177,8 @@ li .title {
 	color: #888;
 }
 #buttons {
-	width: 280px;
-	margin: 0px auto;
-	padding-top: 10px;
+	float: right;
+	margin: 5px 10px 0px 0px;
 	text-align: right;
 }
 

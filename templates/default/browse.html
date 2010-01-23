@@ -8,12 +8,12 @@
 
 			</ul>-->
 			
-			<div id="browse_parent">
+			<div id="list_header">
+				<div id="buttons"><a href="index.php?action=playall"><img src="templates/{:$template:}/images/playall.png" /></a> <a href="index.php?action=addall"><img src="templates/{:$template:}/images/addall.png" /></a></div>
 				{:if $browse_parent_link:}<a href="index.php?browse={:$browse_parent_link:}" id="browse_back">&nbsp;</a>{:/if:}
 				<p>{:$browse_header|escape:'html':}</p>
 			</div>
 
-			<!--<div id="buttons"><a href="index.php?action=playall"><img src="templates/{:$template:}/images/playall.gif" /></a> <a href="index.php?action=addall"><img src="templates/{:$template:}/images/addall.gif" /></a></div>-->
 
 			<div id="list">
 				<ul class="list">

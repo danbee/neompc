@@ -4,7 +4,7 @@
 					<li>
 				{:/if:}
 						<a class="remove" href="{:$playlist_remove_link:}{:$playlist_item.Pos:}"><img src="templates/{:$template:}/images/del.png" alt="Remove from Playlist" class="button" /></a>
-						<a class="play" href="{:$playlist_play_link:}{:$playlist_item.Pos:}">
+						<a class="playlist_item" href="{:$playlist_play_link:}{:$playlist_item.Pos:}">
 							<span class="pos">{:$playlist_item.Pos+1|string_format:"%02d":}</span>
 						{:if $playlist_item.Title:}
 							<span class="title">{:$playlist_item.Title:}</span>
