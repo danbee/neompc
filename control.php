@@ -53,7 +53,7 @@ function mpd_info() {
 
 	$cover_link = $_CONFIG['music_directory'] . '/'
 					. substr($current_track['file'], 0, strrpos($current_track['file'], '/') + 1) 
-					. $_CONFIG['album_cover_name'];
+					. var_filter($current_track, $_CONFIG['album_cover_name']);
 			
 	if (file_exists($cover_link)) {
 		$info['coverimage'] = 'lib/image.php?file=' . $cover_link . '&size=' . $_CONFIG['album_cover_size'];

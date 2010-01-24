@@ -6,6 +6,10 @@
 	}
 
 	switch($_GET['action']) {
+		case "shuffle":
+			$mympd->PLShuffle();
+			break;
+
 		case "clear":
 			$mympd->PLClear();
 			break;

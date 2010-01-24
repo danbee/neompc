@@ -9,7 +9,6 @@
 	require("lib/global.php");	
 	require("lib/actions.php");	
 	require("lib/page.php");	
-		
 	/* output the template */	
 	$smarty->display($_CONFIG['template'] . '/index.html');
 	

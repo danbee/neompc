@@ -40,12 +40,13 @@
 			$smarty->assign('song_position', $mympd->current_track_position);
 			$smarty->assign('mpd_state', $mympd->state);
 			
-			$cover_link = $_CONFIG['music_directory'] . '/'
-						. substr($current_track['file'], 0, strrpos($current_track['file'], '/') + 1) 
-						. $_CONFIG['album_cover_name'];
+			$cover_path = $_CONFIG['music_directory'] . '/'
+						. substr($current_track['file'], 0, strrpos($current_track['file'], '/') + 1);
+			$cover_file = $_CONFIG['album_cover_name'];
 			
 			if (file_exists($cover_link)) {
-				$smarty->assign('coverimage', $cover_link);
+				$smarty->assign('coverpath', $cover_link);
+				$smarty->assign('coverfile', $cover_file);
 				$smarty->assign('coversize', $_CONFIG['album_cover_size']);
 			}
 			

@@ -89,6 +89,7 @@
 	$smarty->assign('control_link', 'index.php?page=control');
 	$smarty->assign('playlist_play_link', 'index.php?page=control&action=play&skipto=');
 	$smarty->assign('playlist_clear_link', 'index.php?action=clear');
+	$smarty->assign('playlist_shuffle_link', 'index.php?action=shuffle');
 	$smarty->assign('mpd_state', $mympd->state);
 
 	/* first check for a page cookie, and default to displaying the playlist */
@@ -107,5 +108,16 @@
 	//echo $mympd->current_track_length, ' - ', $mympd->current_track_position;
 
 	$smarty->assign('page', $page);
-
+	
+	// --------------------------------------
+	
+	function var_filter($vars, $string) {
+		if (is_array($vars)){
+			foreach ($vars as $key => $value) {
+				$string = str_replace('{' . $key . '}', $value, $string);
+			}
+		}
+		return $string;
+	}
+	
 ?>
