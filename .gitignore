@@ -1,0 +1,20 @@
+syntax: glob
+imagecache/*.png
+imagecache/*.jpg
+imagecache/*.jpeg
+imagecache/*.gif
+cache/*
+*.log
+*.log.?
+*.log.??
+*.pyc
+*.pyo
+.*.swp
+*~ 
+.DS_Store
+._*
+.htaccess
+
+users/*
+
+images/.htaccess
