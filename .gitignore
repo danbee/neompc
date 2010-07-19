@@ -1,4 +1,3 @@
-syntax: glob
 imagecache/*.png
 imagecache/*.jpg
 imagecache/*.jpeg
@@ -14,7 +13,5 @@ cache/*
 .DS_Store
 ._*
 .htaccess
-
-users/*
 
 images/.htaccess
